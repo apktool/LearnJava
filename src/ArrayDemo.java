@@ -37,5 +37,14 @@ public class ArrayDemo {
             }
             System.out.println();
         }
+
+        // 上述代码也可以使用Java提供的方法来获取数组长度
+
+        for(int i=0; i!=array4.length; i++){
+            for(int j=0; j!=array4[i].length; j++){
+                System.out.print(array4[i][j]+"\t");
+            }
+            System.out.println();
+        }
     }
 }
