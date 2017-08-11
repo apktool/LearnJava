@@ -51,7 +51,7 @@ class emploee extends Person{
     }
 }
 
-public class Inheriance {
+public class Inheritance{
     public static void main(String[] args){
         students stu = new students();
         stu.eat();
