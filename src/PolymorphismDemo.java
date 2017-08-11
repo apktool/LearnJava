@@ -20,6 +20,9 @@ class Childs extends Parents{
     public void show(){
         System.out.println("I am Child's show");
     }
+    public void method(){
+        System.out.println("I am Child's method");
+    }
 }
 
 public class PolymorphismDemo {
@@ -27,6 +30,11 @@ public class PolymorphismDemo {
         Parents chd = new Childs();
         System.out.println(chd.num);
         chd.show();
+        // chd.method(); // 因为父类中并没有定义method方法，因此这里不能这么使用。可以重新创建子类对象或者使用向下转型
+
+        Childs chd1 = (Childs)(chd); // 向下转型(Downcasting) | 将父类转换为子类
+                                      // 向上转型(Upcasting) | 将子类转换为父类
+        chd1.method();
     }
 }
 
