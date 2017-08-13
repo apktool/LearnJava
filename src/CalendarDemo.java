@@ -18,5 +18,15 @@ public class CalendarDemo {
         int minute = rightNow.get(Calendar.MINUTE);
         int seconde = rightNow.get(Calendar.SECOND);
         System.out.println(year + "-" + (month + 1) + "-" + date + " " + time + ":" + minute + ":" + seconde);
+
+        rightNow.add(Calendar.YEAR, 5);
+        rightNow.add(Calendar.MONTH, -3);
+        year = rightNow.get(Calendar.YEAR);
+        month = rightNow.get(Calendar.MONTH);
+        date = rightNow.get(Calendar.DATE);
+        time = rightNow.get(Calendar.HOUR);
+        minute = rightNow.get(Calendar.MINUTE);
+        seconde = rightNow.get(Calendar.SECOND);
+        System.out.println(year + "-" + (month + 1) + "-" + date + " " + time + ":" + minute + ":" + seconde);
     }
 }
