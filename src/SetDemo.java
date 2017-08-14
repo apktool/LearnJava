@@ -1,9 +1,10 @@
 import java.util.Set;
 import java.util.HashSet;
+import java.util.TreeSet;
 
 /**
  * Description:
- * Set
+ * Set, TreeSet
  * unique, out-of-order
  *
  * @author apktool
@@ -19,6 +20,16 @@ public class SetDemo {
 
         for(String x: set){
             System.out.print(x);
+        }System.out.println();
+
+        TreeSet<Integer> ts = new TreeSet<Integer>();
+        ts.add(8);
+        ts.add(6);
+        ts.add(7);
+        ts.add(6);
+
+        for (Integer it: ts){
+            System.out.print(it);
         }System.out.println();
     }
 }
