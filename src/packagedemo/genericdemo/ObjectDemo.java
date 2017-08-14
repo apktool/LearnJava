@@ -19,5 +19,16 @@ public class ObjectDemo {
 
         ObjectTool1<Integer> ot3 = new ObjectTool1<Integer>();
         ot3.show(666);
+
+        System.out.println("-----------------------------");
+
+        ObjectTool2 ot4 = new ObjectTool2();
+        ot4.show("Hello Java");
+
+        ObjectTool2 ot5 = new ObjectTool2();
+        ot5.show(false);
+
+        ObjectTool2 ot6 = new ObjectTool2();
+        ot6.show(999);
     }
 }
