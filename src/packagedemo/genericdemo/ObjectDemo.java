@@ -1,6 +1,8 @@
 /**
  * Description:
  * Generic class
+ * Generic function
+ * Generic interface
  *
  * @author apktool
  * @version 1.0
@@ -30,5 +32,16 @@ public class ObjectDemo {
 
         ObjectTool2 ot6 = new ObjectTool2();
         ot6.show(999);
+
+        System.out.println("-----------------------------");
+
+        ObjectTool3<String> ot7 = new ObjectTool3<String>();
+        ot7.show("Hello Python");
+
+        ObjectTool3<Boolean> ot8 = new ObjectTool3<Boolean>();
+        ot8.show(true);
+
+        ObjectTool3<Integer> ot9 = new ObjectTool3<Integer>();
+        ot9.show(888);
     }
 }
