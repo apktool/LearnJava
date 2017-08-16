@@ -57,5 +57,20 @@ public class FileDemo {
             System.out.println(f.getName());
         }
 
+        File srcFolder = new File("D:\\WorkSpace\\LearnJava");
+        getAllJavaFilePaths(srcFolder);
+    }
+
+    private static void getAllJavaFilePaths(File srcFolder) {
+        File[] fileArray = srcFolder.listFiles();
+        for(File file: fileArray){
+            if(file.isDirectory()){
+                getAllJavaFilePaths(file);
+            }else{
+                if(file.getName().endsWith(".java")){
+                    System.out.println(file.getAbsolutePath());
+                }
+            }
+        }
     }
 }
