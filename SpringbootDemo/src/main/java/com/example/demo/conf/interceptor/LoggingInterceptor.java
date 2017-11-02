@@ -10,6 +10,13 @@ public class LoggingInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         System.out.println("--> | preHandle");
+        System.out.println(httpServletRequest.getRequestURL());
+        Object obj = httpServletRequest.getSession().getAttribute("user");
+        if(obj == null){
+            httpServletRequest.getSession().setAttribute("user", "user");
+            httpServletResponse.sendRedirect("/login");
+            return false;
+        }
         return true;
     }
 

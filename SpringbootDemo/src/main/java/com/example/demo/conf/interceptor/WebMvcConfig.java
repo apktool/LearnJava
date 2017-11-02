@@ -9,7 +9,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry) {
-        interceptorRegistry.addInterceptor(new LoggingInterceptor()).addPathPatterns("/*");
+        interceptorRegistry.addInterceptor(new LoggingInterceptor())
+                .addPathPatterns("/*")
+                .excludePathPatterns("/login");
     }
 }
 
