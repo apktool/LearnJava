@@ -8,5 +8,6 @@ public class App {
         ApplicationContext context = new ClassPathXmlApplicationContext("SpringBeans.xml");
         HelloApplication obj = (HelloApplication) context.getBean("helloBean");
         obj.printHello();
+        ((ClassPathXmlApplicationContext)context).close();
     }
 }
