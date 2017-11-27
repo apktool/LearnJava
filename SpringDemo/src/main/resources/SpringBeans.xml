@@ -10,7 +10,11 @@
 
     <bean id="customDao" class="com.custome.CustomDaoImpl"></bean>
     <bean id="customService" class="com.custome.CustomServiceImpl">
+        <!--
         <constructor-arg index="0" ref="customDao"></constructor-arg>
+        -->
+        <property name="customDao" ref="customDao"></property>
+
     </bean>
 
 </beans>
