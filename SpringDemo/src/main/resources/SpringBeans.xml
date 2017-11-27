@@ -3,8 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-       <bean id="helloBean" class="com.demo.HelloApplication" init-method="init" destroy-method="destroy">
-           <property name="name" value="apktool" />
-       </bean>
+    <bean id="helloBean" class="com.demo.HelloApplication" init-method="init" destroy-method="destroy">
+        <property name="name" value="apktool" />
+    </bean>
+
+
+    <bean id="customDao" class="com.custome.CustomDaoImpl"></bean>
+    <bean id="customService" class="com.custome.CustomServiceImpl">
+        <constructor-arg index="0" ref="customDao"></constructor-arg>
+    </bean>
 
 </beans>
