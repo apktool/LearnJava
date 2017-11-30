@@ -20,14 +20,9 @@
 
     </bean>
 
+    <bean id="collectionDemo" class="com.springel.CollectionDemo"></bean>
     <bean id="customer" class="com.springel.Customer">
-        <property name="name" value="Mike"/>
-        <property name="telephone" value="17600000000"/>
+        <property name="name" value="#{collectionDemo.nameMap['001']}"/>
+        <property name="telephone" value="#{collectionDemo.teleList[0]}"/>
     </bean>
-
-    <bean id="customerDao" class="com.springel.CustomDaoImpl">
-        <property name="customer" value="#{customer}"></property>
-        <property name="customerName" value="#{customer.name}"></property>
-    </bean>
-
 </beans>
