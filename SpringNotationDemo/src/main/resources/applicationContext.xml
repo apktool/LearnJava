@@ -7,5 +7,6 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location="classpath:jdbc.properties"/>
     <context:component-scan base-package="com.notation"></context:component-scan>
 </beans>

@@ -8,5 +8,6 @@ public class App {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         CustomerDaoImpl customerDao = (CustomerDaoImpl) context.getBean("customDao");
         customerDao.save();
+        System.out.println(customerDao);
     }
 }
