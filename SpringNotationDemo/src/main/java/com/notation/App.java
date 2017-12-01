@@ -11,7 +11,7 @@ public class App {
         customerDao.save();
         System.out.println(customerDao);
         */
-        CustomerServiceImpl customerService = (CustomerServiceImpl) context.getBean("customerService");
+        CustomerServiceInterface customerService = (CustomerServiceImpl) context.getBean("customerService");
         customerService.save();
     }
 }
