@@ -1,9 +1,9 @@
 package com.notation;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component(value = "customDao")
+@Repository(value = "customDao")
 public class CustomerDaoImpl implements CustomerDaoInterface{
     @Value("${jdbcUrl}")
     private String jdbcUrl;
