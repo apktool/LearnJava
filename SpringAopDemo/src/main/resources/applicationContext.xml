@@ -15,6 +15,7 @@
             <aop:before method="before" pointcut-ref="pt"/>
             <aop:after method="after" pointcut-ref="pt"/>
             <aop:after-throwing method="afterThrowing" throwing="e" pointcut-ref="pt"/>
+            <aop:around method="aroundAdvice" pointcut-ref="pt"/>
             <aop:pointcut id="pt" expression="execution(public void com.aop.CustomerServiceImpl.*())"/>
 
             <aop:after-returning method="afterReturning" returning="money" pointcut-ref="pp"/>

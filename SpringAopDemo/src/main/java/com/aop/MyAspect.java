@@ -1,6 +1,7 @@
 package com.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 
 import java.util.Arrays;
 
@@ -37,5 +38,15 @@ public class MyAspect {
         System.out.println("The function intercepted: " + jp.getSignature().getName());
         System.out.println("The args intercepted" + Arrays.asList(jp.getArgs()));
         System.out.println("Something is wrong: " + e.getMessage());
+    }
+
+    public void aroundAdvice(ProceedingJoinPoint pjp){
+        System.out.println("------------>|");
+        try {
+            pjp.proceed();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        System.out.println("|<------------");
     }
 }
