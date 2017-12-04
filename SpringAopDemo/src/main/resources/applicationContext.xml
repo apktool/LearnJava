@@ -12,7 +12,7 @@
 
     <aop:config>
         <aop:aspect ref="myAspect">
-            <aop:before method="WriteLog" pointcut-ref="pt"/>
+            <aop:before method="before" pointcut-ref="pt"/>
             <aop:pointcut id="pt" expression="execution(public void com.aop.CustomerServiceImpl.*())"/>
         </aop:aspect>
     </aop:config>
