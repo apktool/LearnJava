@@ -13,4 +13,9 @@ public class CustomerServiceImpl implements CustomerServiceInterface{
         System.out.println("Transfer RMB: " + money);
         return money;
     }
+
+    public void error() {
+        int a = 100/0;
+        System.out.println("Error occur whiling executing.");
+    }
 }

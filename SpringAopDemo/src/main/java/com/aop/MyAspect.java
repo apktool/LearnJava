@@ -30,4 +30,12 @@ public class MyAspect {
         System.out.println("The args intercepted" + Arrays.asList(jp.getArgs()));
         System.out.println("Get RMB: " + money);
     }
+
+    public void afterThrowing(JoinPoint jp, Throwable e) {
+        System.out.println("->|After throwing advice");
+        System.out.println("Proxy object type: " + jp.getThis().getClass());
+        System.out.println("The function intercepted: " + jp.getSignature().getName());
+        System.out.println("The args intercepted" + Arrays.asList(jp.getArgs()));
+        System.out.println("Something is wrong: " + e.getMessage());
+    }
 }
