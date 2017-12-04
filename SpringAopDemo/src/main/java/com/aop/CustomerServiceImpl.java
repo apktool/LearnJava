@@ -8,4 +8,9 @@ public class CustomerServiceImpl implements CustomerServiceInterface{
     public void update() {
         System.out.println("CustomerServiceImpl -> update");
     }
+
+    public Double transfer(Double money) {
+        System.out.println("Transfer RMB: " + money);
+        return money;
+    }
 }

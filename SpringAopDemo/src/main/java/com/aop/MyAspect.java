@@ -22,4 +22,12 @@ public class MyAspect {
         System.out.println("The function intercepted: " + jp.getSignature().getName());
         System.out.println("The args intercepted" + Arrays.asList(jp.getArgs()));
     }
+
+    public void afterReturning(JoinPoint jp, Object money) {
+        System.out.println("->|After returning advice");
+        System.out.println("Proxy object type: " + jp.getThis().getClass());
+        System.out.println("The function intercepted: " + jp.getSignature().getName());
+        System.out.println("The args intercepted" + Arrays.asList(jp.getArgs()));
+        System.out.println("Get RMB: " + money);
+    }
 }

@@ -15,5 +15,6 @@ public class App {
 
         customer.save();
         customer.update();
+        customer.transfer(666D);
     }
 }
