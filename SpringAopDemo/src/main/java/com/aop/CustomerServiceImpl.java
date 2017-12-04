@@ -1,5 +1,8 @@
 package com.aop;
 
+import org.springframework.stereotype.Service;
+
+@Service(value = "customerService")
 public class CustomerServiceImpl implements CustomerServiceInterface{
     public void save() {
         System.out.println("CustomerServiceImpl -> save()");
