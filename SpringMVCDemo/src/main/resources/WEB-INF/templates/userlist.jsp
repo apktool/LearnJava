@@ -44,6 +44,17 @@
             <td><form:label path="gender">gender: </form:label></td>
             <td>${(gender=="M"? "Male": "Female")}</td>
         </tr>
+        <tr>
+            <td><form:label path="favoriteNumber">favoriteNumber: </form:label></td>
+            <td>
+                <%
+                    String[] favoriteNumber = (String[])request.getAttribute("favoriteNumber");
+                    for(String number: favoriteNumber) {
+                        out.println(" # " + number );
+                    }
+                %>
+            </td>
+        </tr>
     </table>
 </body>
 </html>

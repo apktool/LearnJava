@@ -8,6 +8,7 @@ public class User {
     private Boolean receivePaper;
     private String[] favoriteFrameworks;
     private String gender;
+    private String[] favoriteNumber;
 
     public String getUsername() {
         return username;
@@ -55,5 +56,13 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String[] getFavoriteNumber() {
+        return favoriteNumber;
+    }
+
+    public void setFavoriteNumber(String[] favoriteNumber) {
+        this.favoriteNumber = favoriteNumber;
     }
 }

@@ -26,6 +26,7 @@ public class UserController {
         model.addAttribute("receivePaper", user.getReceivePaper());
         model.addAttribute("favoriteFrameworks", user.getFavoriteFrameworks());
         model.addAttribute("gender", user.getGender());
+        model.addAttribute("favoriteNumber", user.getFavoriteNumber());
 
         return "userlist";
     }
@@ -39,5 +40,17 @@ public class UserController {
         webFrameworkList.add("Spring Integration");
 
         return webFrameworkList;
+    }
+
+    @ModelAttribute("numbersList")
+    public List<String> getNumbersList() {
+        List<String> numbersList = new ArrayList<String>();
+
+        numbersList.add("1");
+        numbersList.add("2");
+        numbersList.add("3");
+        numbersList.add("4");
+
+        return numbersList;
     }
 }
