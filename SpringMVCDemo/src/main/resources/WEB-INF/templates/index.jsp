@@ -12,5 +12,6 @@
 </head>
 <body>
     <h2>Hello, ${message}</h2>
+    <p><a href="/staticPage">Click Here</a> Will redirect url to static page</p>
 </body>
 </html>
