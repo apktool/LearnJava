@@ -12,4 +12,16 @@ public class WebController {
         return "redirect:/pages/final.html";
     }
 
+    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
+    public String Redirect() {
+        return "redirect:finalPage";
+    }
+
+    @RequestMapping(value = "/finalPage", method = RequestMethod.GET)
+    public String RedirectFinalPage() {
+        return "final";
+    }
+
+
+
 }
