@@ -35,6 +35,14 @@
             <td><form:checkboxes items="${webFrameworkList}" path="favoriteFrameworks" /></td>
         </tr>
         <tr>
+            <td><form:label path="gender">gender</form:label></td>
+            <td>
+                <form:radiobutton path="gender" value="M" label="Male" checked="true"/>
+                <form:radiobutton path="gender" value="F" label="Female"/>
+            </td>
+        </tr>
+
+        <tr>
             <td colspan="2">
                 <input type="submit" value="Submit"/>
             </td>

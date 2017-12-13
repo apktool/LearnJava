@@ -26,11 +26,11 @@
             <td>${address}</td>
         </tr>
         <tr>
-            <td>subscribe: </td>
+            <td><form:label path="receivePaper">receivePaper: </form:label></td>
             <td>${receivePaper}</td>
         </tr>
         <tr>
-            <td>like:</td>
+            <td><form:label path="favoriteFrameworks">favoriteFrameworks: </form:label></td>
             <td>
                 <%
                 String[] favoriteFrameworks = (String[])request.getAttribute("favoriteFrameworks");
@@ -39,6 +39,10 @@
                 }
                 %>
             </td>
+        </tr>
+        <tr>
+            <td><form:label path="gender">gender: </form:label></td>
+            <td>${(gender=="M"? "Male": "Female")}</td>
         </tr>
     </table>
 </body>
