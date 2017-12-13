@@ -25,6 +25,10 @@
             <td><form:label path="address">address: </form:label></td>
             <td>${address}</td>
         </tr>
+        <tr>
+            <td>subscribe: </td>
+            <td>${receivePaper}</td>
+        </tr>
     </table>
 </body>
 </html>

@@ -1,9 +1,11 @@
 package com.springmvc;
 
+
 public class User {
     private String username;
     private String password;
     private String address;
+    private Boolean receivePaper;
 
     public String getUsername() {
         return username;
@@ -27,5 +29,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Boolean getReceivePaper() {
+        return receivePaper;
+    }
+
+    public void setReceivePaper(Boolean receivePaper) {
+        this.receivePaper = receivePaper;
     }
 }

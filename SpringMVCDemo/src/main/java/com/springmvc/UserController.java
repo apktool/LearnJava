@@ -20,6 +20,7 @@ public class UserController {
         model.addAttribute("username", user.getUsername());
         model.addAttribute("password", user.getPassword());
         model.addAttribute("address", user.getAddress());
+        model.addAttribute("receivePaper", user.getReceivePaper());
 
         return "userlist";
     }

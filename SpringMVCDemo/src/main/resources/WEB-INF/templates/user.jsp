@@ -27,6 +27,10 @@
             <td><form:textarea path="address" /></td>
         </tr>
         <tr>
+            <td><form:label path="receivePaper">receivePaper</form:label></td>
+            <td><form:checkbox path="receivePaper" /></td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <input type="submit" value="Submit"/>
             </td>
