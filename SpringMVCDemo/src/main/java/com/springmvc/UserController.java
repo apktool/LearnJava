@@ -19,6 +19,7 @@ public class UserController {
     public String AddUser(@ModelAttribute("SpringWeb") User user, ModelMap model) {
         model.addAttribute("username", user.getUsername());
         model.addAttribute("password", user.getPassword());
+        model.addAttribute("address", user.getAddress());
 
         return "userlist";
     }

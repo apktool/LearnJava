@@ -21,6 +21,10 @@
             <td><form:label path="password">password: </form:label></td>
             <td>${password}</td>
         </tr>
+        <tr>
+            <td><form:label path="address">address: </form:label></td>
+            <td>${address}</td>
+        </tr>
     </table>
 </body>
 </html>
