@@ -6,6 +6,7 @@ public class User {
     private String password;
     private String address;
     private Boolean receivePaper;
+    private String[] favoriteFrameworks;
 
     public String getUsername() {
         return username;
@@ -37,5 +38,13 @@ public class User {
 
     public void setReceivePaper(Boolean receivePaper) {
         this.receivePaper = receivePaper;
+    }
+
+    public String[] getFavoriteFrameworks() {
+        return favoriteFrameworks;
+    }
+
+    public void setFavoriteFrameworks(String[] favoriteFrameworks) {
+        this.favoriteFrameworks = favoriteFrameworks;
     }
 }

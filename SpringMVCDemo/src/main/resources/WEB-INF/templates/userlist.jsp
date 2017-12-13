@@ -29,6 +29,17 @@
             <td>subscribe: </td>
             <td>${receivePaper}</td>
         </tr>
+        <tr>
+            <td>like:</td>
+            <td>
+                <%
+                String[] favoriteFrameworks = (String[])request.getAttribute("favoriteFrameworks");
+                for(String framework: favoriteFrameworks) {
+                    out.println(framework + " # ");
+                }
+                %>
+            </td>
+        </tr>
     </table>
 </body>
 </html>

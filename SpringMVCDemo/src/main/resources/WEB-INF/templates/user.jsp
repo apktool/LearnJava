@@ -31,6 +31,10 @@
             <td><form:checkbox path="receivePaper" /></td>
         </tr>
         <tr>
+            <td><form:label path="favoriteFrameworks">subscribePaper</form:label></td>
+            <td><form:checkboxes items="${webFrameworkList}" path="favoriteFrameworks" /></td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <input type="submit" value="Submit"/>
             </td>
