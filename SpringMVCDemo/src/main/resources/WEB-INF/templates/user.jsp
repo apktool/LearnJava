@@ -55,6 +55,10 @@
             </td>
         </tr>
         <tr>
+            <td><form:label path="skills">skill:</form:label></td>
+            <td><form:select path="skills" items="${skillsList}" multiple="true"/></td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <input type="submit" value="Submit"/>
             </td>

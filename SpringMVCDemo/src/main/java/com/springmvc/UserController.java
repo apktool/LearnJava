@@ -30,6 +30,7 @@ public class UserController {
         model.addAttribute("gender", user.getGender());
         model.addAttribute("favoriteNumber", user.getFavoriteNumber());
         model.addAttribute("country", user.getCountry());
+        model.addAttribute("skills", user.getSkills());
 
         return "userlist";
     }
@@ -65,5 +66,17 @@ public class UserController {
         countryList.put("SG", "Singapore");
         countryList.put("MY", "Malaysia");
         return countryList;
+    }
+
+    @ModelAttribute("skillsList")
+    public Map<String, String> getSkillsList() {
+        Map<String, String> skillList = new HashMap<String, String>();
+
+        skillList.put("Hibernate", "Hibernate");
+        skillList.put("Spring", "Spring");
+        skillList.put("Struts", "Struts");
+        skillList.put("Mybatis", "Mybatis");
+
+        return skillList;
     }
 }

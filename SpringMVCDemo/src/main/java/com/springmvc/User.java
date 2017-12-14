@@ -10,6 +10,7 @@ public class User {
     private String gender;
     private String[] favoriteNumber;
     private String country;
+    private String[] skills;
 
     public String getUsername() {
         return username;
@@ -73,5 +74,13 @@ public class User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String[] getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String[] skills) {
+        this.skills = skills;
     }
 }

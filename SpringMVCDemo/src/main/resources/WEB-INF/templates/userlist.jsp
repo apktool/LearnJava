@@ -57,7 +57,18 @@
         </tr>
         <tr>
             <td><form:label path="country">country: </form:label></td>
-            <td>${country}</td>>
+            <td>${country}</td>
+        </tr>
+        <tr>
+            <td><form:label path="skills">skill: </form:label></td>
+            <td>
+                <%
+                    String[] skills = (String[]) request.getAttribute("skills");
+                    for(String skill: skills){
+                        out.println("# " + skill);
+                    }
+                %>
+            </td>
         </tr>
     </table>
 </body>
