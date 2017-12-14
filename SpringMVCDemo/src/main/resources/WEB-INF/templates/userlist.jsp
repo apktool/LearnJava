@@ -55,6 +55,10 @@
                 %>
             </td>
         </tr>
+        <tr>
+            <td><form:label path="country">country: </form:label></td>
+            <td>${country}</td>>
+        </tr>
     </table>
 </body>
 </html>

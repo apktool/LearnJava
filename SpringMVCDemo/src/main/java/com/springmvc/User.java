@@ -9,6 +9,7 @@ public class User {
     private String[] favoriteFrameworks;
     private String gender;
     private String[] favoriteNumber;
+    private String country;
 
     public String getUsername() {
         return username;
@@ -64,5 +65,13 @@ public class User {
 
     public void setFavoriteNumber(String[] favoriteNumber) {
         this.favoriteNumber = favoriteNumber;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

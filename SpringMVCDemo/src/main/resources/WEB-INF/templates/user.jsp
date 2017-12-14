@@ -46,6 +46,15 @@
             <td><form:radiobuttons items="${numbersList}" path="favoriteNumber" /></td>
         </tr>
         <tr>
+            <td><form:label path="country">Country:</form:label></td>
+            <td>
+                <form:select path="country">
+                    <form:option value="NONE" label="Select..."/>
+                    <form:options items="${countryList}"/>
+                </form:select>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <input type="submit" value="Submit"/>
             </td>
