@@ -2,6 +2,7 @@ package com.springmvc;
 
 
 public class User {
+    private Integer id;
     private String username;
     private String password;
     private String address;
@@ -11,6 +12,14 @@ public class User {
     private String[] favoriteNumber;
     private String country;
     private String[] skills;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

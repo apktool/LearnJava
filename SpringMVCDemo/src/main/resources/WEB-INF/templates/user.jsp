@@ -15,6 +15,10 @@
 <form:form method="POST" action="/addUser">
     <table>
         <tr>
+            <td></td>
+            <td><form:hidden path="id" value="1000" /></td>
+        </tr>
+        <tr>
             <td><form:label path="username">username:</form:label></td>
             <td><form:input path="username" /></td>
         </tr>

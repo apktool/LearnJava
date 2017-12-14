@@ -14,6 +14,10 @@
 <body>
     <table>
         <tr>
+            <td><form:label path="id">id: </form:label></td>
+            <td>${id}</td>
+        </tr>
+        <tr>
             <td><form:label path="username">username: </form:label></td>
             <td>${username}</td>
         </tr>
