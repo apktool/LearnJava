@@ -12,6 +12,8 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <bean id="studentValidator" class="com.springmvc.StudentValidator" />
+
     <mvc:resources mapping="/pages/**"  location="/WEB-INF/templates/"/>
     <mvc:annotation-driven/>
 

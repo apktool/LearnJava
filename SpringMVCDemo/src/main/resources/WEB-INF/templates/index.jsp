@@ -15,5 +15,6 @@
     <p><a href="/staticPage">Click Here</a> Will redirect url to static page</p>
     <p><a href="/redirect">Click Here</a> Will redirect url to redirect, and then redirect to finalPage</p>
     <p><a href="/user">Click Here</a> Will redirect url user page</p>
+    <p><a href="/addStudent">Click Here</a> Will redirect url student page</p>
 </body>
 </html>
