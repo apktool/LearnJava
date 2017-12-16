@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.hibernate.Employee" table="EMPLOYEE">
+        <meta attribute="class-description">
+            This class contains the employee detail.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="firstName" column="first_name" type="string"/>
+        <property name="lastName" column="last_name" type="string"/>
+        <property name="salary" column="salary" type="int"/>
+    </class>
+</hibernate-mapping>
+
+<!--
+DATA TYPE
+http://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#basic-provided
+-->
+
+<!--
+http://docs.jboss.org/hibernate/orm/current/quickstart/html_single/#hibernate-gsg-tutorial-basic-test
+  It is not required for the id element to map to the table’s actual primary key column(s),
+  but it is the normal convention. Tables mapped in Hibernate do not even need to define primary keys.
+  However, it is strongly recommend that all schemas define proper referential integrity.
+  Therefore id and primary key are used interchangeably throughout Hibernate documentation.
+-->
