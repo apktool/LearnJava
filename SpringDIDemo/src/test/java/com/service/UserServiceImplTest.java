@@ -22,6 +22,7 @@ public class UserServiceImplTest {
         UserServiceImpl userServiceImpl = (UserServiceImpl) context.getBean("serviceImpl");
         userServiceImpl.getUser();
     }
+    */
 
     @Test
     public void BasicDI() {
@@ -29,7 +30,6 @@ public class UserServiceImplTest {
         UserServiceImpl userServiceImpl = (UserServiceImpl) context.getBean("userServiceImpl");
         userServiceImpl.getUser();
     }
-    */
 }
 
 /**
