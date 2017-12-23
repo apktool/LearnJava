@@ -1,12 +1,12 @@
 package com.service;
 
-import com.dao.UserDaoOracleImpl;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UserServiceImplTest {
 
+    /*
     @Test
     public void BasicFactory() {
         UserServiceImpl userServiceImpl = new UserServiceImpl();
@@ -20,6 +20,14 @@ public class UserServiceImplTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         UserServiceImpl userServiceImpl = (UserServiceImpl) context.getBean("serviceImpl");
+        userServiceImpl.getUser();
+    }
+    */
+
+    @Test
+    public void BasicDI() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserServiceImpl userServiceImpl = (UserServiceImpl) context.getBean("userServiceImpl");
         userServiceImpl.getUser();
     }
 }

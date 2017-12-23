@@ -9,11 +9,6 @@
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <context:annotation-config/>
-
-    <bean id="mysqlDao" class="com.dao.UserDaoMysqlImpl"></bean>
-    <bean id="oracleDao" class="com.dao.UserDaoOracleImpl"></bean>
-    <bean id="serviceImpl" class="com.service.UserServiceImpl">
-        <property name="userDao" ref="mysqlDao"></property>
-    </bean>
+    <context:component-scan base-package="com"/>
 
 </beans>
