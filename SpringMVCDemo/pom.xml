@@ -5,15 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.springmvc</groupId>
-    <artifactId>mvcdemo</artifactId>
+    <artifactId>SpringMVCDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+        <!-- 注意spring-webmvc 中包含了spring-context, spring-core, spring-beans, spring-expression 以及 spring-aop 和 spring-web 包 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.0.2.RELEASE</version>
+            <version>5.0.8.RELEASE</version>
         </dependency>
     </dependencies>
+
 
 </project>
