@@ -3,8 +3,8 @@ package com.frontsurf;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.ptr.IntByReference;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -13,7 +13,7 @@ import java.io.*;
  * @date 2018-11-28 16:18
  */
 public class CompressionFile {
-    private static final Logger logger = LogManager.getLogger(CompressionFile.class);
+    private static final Logger logger = LoggerFactory.getLogger(CompressionFile.class);
 
     public static void main(String[] args) throws IOException {
         Snappy.INSTANCE.CC_apiSysInit(true);

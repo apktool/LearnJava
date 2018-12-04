@@ -3,15 +3,15 @@ package com.compress.snappy.impl;
 import com.compress.snappy.Decompressor;
 import com.compress.snappy.SnappyLibrary;
 import com.sun.jna.ptr.IntByReference;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author li.wengang
  * @date 2018-12-03 15:53
  */
 public class SnappyDecompressor implements Decompressor {
-    private static final Logger logger = LogManager.getLogger(SnappyDecompressor.class);
+    private static final Logger logger = LoggerFactory.getLogger(SnappyDecompressor.class);
 
     private boolean finished;
 
