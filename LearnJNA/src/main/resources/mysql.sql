@@ -1,3 +1,9 @@
+DROP DATABASE IF EXISTS temp;
+
+create DATABASE temp;
+
+USE temp;
+
 CREATE TABLE compress_test (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     compress_type ENUM('HARDWARECOMPRESS', 'SOFTWARECOMPRESS') COMMENT '压缩类型',

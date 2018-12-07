@@ -1,4 +1,4 @@
-package com.compress.test;
+package com.compress.test.directory;
 
 import com.compress.snappy.Decompressor;
 import com.compress.snappy.impl.SnappyDecompressor;
@@ -17,8 +17,8 @@ import java.util.ResourceBundle;
  * @author li.wengang
  * @date 2018-12-04 10:55
  */
-public class Decompression {
-    private static final Logger logger = LoggerFactory.getLogger(Decompression.class);
+public class DecompressionFiles {
+    private static final Logger logger = LoggerFactory.getLogger(DecompressionFiles.class);
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("local");
 
     public static void main(String[] args) throws IOException {
@@ -26,14 +26,20 @@ public class Decompression {
         final File inPathName = new File(resourceBundle.getString("compress.directory"));
         final File outPathName = new File(resourceBundle.getString("decompress.directory"));
 
-        FileUtils.forceMkdir(inPathName);
-        FileUtils.forceMkdir(outPathName);
-
         Iterator<File> fileIterator = FileUtils.iterateFiles(inPathName, null, true);
         while (fileIterator.hasNext()) {
             File file = fileIterator.next();
             byte[] input = FileUtils.readFileToByteArray(file);
-            byte[] decompressOutput = new byte[input.length * 2];
+
+            int abc = input.length * 2;
+            for (int i = 2; i < 50; i++) {
+                int abs = Math.abs(input.length * i);
+                if (abs < Integer.MAX_VALUE - 1) {
+                    abc = abs;
+                }
+            }
+
+            byte[] decompressOutput = new byte[abc];
 
             long start = System.currentTimeMillis();
 
@@ -51,8 +57,19 @@ public class Decompression {
             long before = FileUtils.sizeOf(file);
             long after = FileUtils.sizeOf(tmp);
 
-            double decompressionRatio = after * 1.0 / before;
-            double decompressionSpeed = before * 1.0 / (end - start);
+            double decompressionRatio = 0.0;
+            if (before == 0) {
+                decompressionRatio = 0.0000;
+            } else {
+                decompressionRatio = after * 1.0 / before;
+            }
+
+            double decompressionSpeed = 0.0;
+            if (end - start == 0) {
+                decompressionSpeed = 0.0;
+            } else {
+                decompressionSpeed = before * 1.0 / (end - start);
+            }
 
             String startTimestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(start);
 

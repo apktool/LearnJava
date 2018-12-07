@@ -28,11 +28,12 @@ public class SnappyDecompressor implements Decompressor {
 
     @Override
     public int decompress(byte[] input, int len, byte[] output) {
-        logger.debug("Decompression is in progress...");
+        logger.debug("DecompressionFiles is in progress...");
 
         IntByReference tmp = new IntByReference(output.length);
         SnappyLibrary.INSTANCE.snappy_uncompress(input, len, output, tmp);
         this.finished = true;
+
         return tmp.getValue();
     }
 

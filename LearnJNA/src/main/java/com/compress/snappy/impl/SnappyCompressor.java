@@ -33,12 +33,8 @@ public class SnappyCompressor implements Compressor {
 
     @Override
     public int compress(byte[] input, int len, byte[] output) {
-        if (len >= output.length) {
-            logger.error("Please add up output length");
-            return -1;
-        }
+        logger.debug("CompressionFiles is in progress...");
 
-        logger.debug("Compression is in progress...");
         IntByReference tmp = new IntByReference(output.length);
         snappyLibrary.snappy_compress(input, len, output, tmp);
         finished = true;

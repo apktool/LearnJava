@@ -1,4 +1,4 @@
-package com.compress.test;
+package com.compress.test.directory;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -14,8 +14,8 @@ import java.util.ResourceBundle;
  * @author li.wengang
  * @date 2018-12-04 16:39
  */
-public class Checksum {
-    private static final Logger logger = LoggerFactory.getLogger(Checksum.class);
+public class ChecksumFiles {
+    private static final Logger logger = LoggerFactory.getLogger(ChecksumFiles.class);
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("local");
 
     public static void main(String[] args) {

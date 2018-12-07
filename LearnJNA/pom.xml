@@ -30,6 +30,13 @@
             <version>2.6</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/info.picocli/picocli -->
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>3.8.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -51,7 +58,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.compress.Main</mainClass>
+                            <mainClass>com.compress.SharedLibraryMain</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

@@ -1,4 +1,4 @@
-package com.compress.test;
+package com.compress.test.directory;
 
 import com.compress.snappy.Compressor;
 import com.compress.snappy.impl.SnappyCompressor;
@@ -17,8 +17,8 @@ import java.util.ResourceBundle;
  * @author li.wengang
  * @date 2018-12-04 10:55
  */
-public class Compression {
-    private static final Logger logger = LoggerFactory.getLogger(Compression.class);
+public class CompressionFiles {
+    private static final Logger logger = LoggerFactory.getLogger(CompressionFiles.class);
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("local");
 
     public static void main(String[] args) throws IOException {
@@ -26,12 +26,10 @@ public class Compression {
         final File inPathName = new File(resourceBundle.getString("original.directory"));
         final File outPathName = new File(resourceBundle.getString("compress.directory"));
 
-        FileUtils.forceMkdir(inPathName);
-        FileUtils.forceMkdir(outPathName);
-
         Iterator<File> fileIterator = FileUtils.iterateFiles(inPathName, null, true);
         while (fileIterator.hasNext()) {
             File file = fileIterator.next();
+            logger.debug("--> " + file.getAbsolutePath());
             byte[] input = FileUtils.readFileToByteArray(file);
             byte[] compressOutput = new byte[input.length * 2];
 
@@ -51,14 +49,26 @@ public class Compression {
             long before = FileUtils.sizeOf(file);
             long after = FileUtils.sizeOf(tmp);
 
-            double compressionRatio = after * 1.0 / before;
-            double compressionSpeed = before * 1.0 / (end - start);
+            double compressionRatio = 0.0;
+            if (before == 0) {
+                compressionRatio = 0.0000;
+            } else {
+                compressionRatio = after * 1.0 / before;
+            }
+
+            double compressionSpeed = 0.0;
+            if (end - start == 0) {
+                compressionSpeed = 0.0;
+            } else {
+                compressionSpeed = before * 1.0 / (end - start);
+            }
+
 
             String startTimestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(start);
 
-            String sql = String.format("INSERT INTO decompress_test (decompress_type, file_name, file_size_before, file_size_after, "
-                            + "decompression_ratio, decompression_speed, start_time, duration) VALUES ("
-                            + "'HARDWAREDECOMPRESS', '%s', %d, %d, %.4f, %.4f,'%s', %d);"
+            String sql = String.format("INSERT INTO compress_test (compress_type, file_name, file_size_before, file_size_after, "
+                            + "compression_ratio, compression_speed, start_time, duration) VALUES ("
+                            + "'HARDWARECOMPRESS', '%s', %d, %d, %.4f, %.4f,'%s', %d);"
                     , file.getAbsolutePath(), before, after, compressionRatio, compressionSpeed, startTimestamp, end - start);
 
             logger.info(sql);
