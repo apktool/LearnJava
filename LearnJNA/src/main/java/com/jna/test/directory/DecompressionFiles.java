@@ -1,7 +1,7 @@
-package com.compress.test.directory;
+package com.jna.test.directory;
 
-import com.compress.snappy.Decompressor;
-import com.compress.snappy.impl.SnappyDecompressor;
+import com.jna.snappy.Decompressor;
+import com.jna.snappy.impl.SnappyDecompressor;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

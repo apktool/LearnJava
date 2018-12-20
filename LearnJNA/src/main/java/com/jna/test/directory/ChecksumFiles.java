@@ -1,4 +1,4 @@
-package com.compress.test.directory;
+package com.jna.test.directory;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;

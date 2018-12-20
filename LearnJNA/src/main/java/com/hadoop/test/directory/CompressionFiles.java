@@ -1,53 +1,57 @@
-package com.compress.test.directory;
+package com.hadoop.test.directory;
 
-import com.compress.snappy.Compressor;
-import com.compress.snappy.impl.SnappyCompressor;
-import org.apache.commons.io.FileUtils;
+import com.hadoop.snappy.Compressor;
+import com.hadoop.snappy.impl.SnappyCompressor;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.LocatedFileStatus;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.RemoteIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
 /**
  * @author li.wengang
- * @date 2018-12-04 10:55
+ * @date 2018-12-20 11:29
  */
 public class CompressionFiles {
     private static final Logger logger = LoggerFactory.getLogger(CompressionFiles.class);
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("local");
 
     public static void main(String[] args) throws IOException {
+        Configuration conf = new Configuration();
 
-        final File inPathName = new File(resourceBundle.getString("original.directory"));
-        final File outPathName = new File(resourceBundle.getString("compress.directory"));
+        FileSystem fs = FileSystem.get(conf);
 
-        Iterator<File> fileIterator = FileUtils.iterateFiles(inPathName, null, true);
-        while (fileIterator.hasNext()) {
-            File file = fileIterator.next();
-            logger.debug("--> " + file.getAbsolutePath());
-            byte[] input = FileUtils.readFileToByteArray(file);
-            byte[] compressOutput = new byte[input.length * 2];
+        final String inPathName = resourceBundle.getString("original.directory");
+        final String outPathName = resourceBundle.getString("compress.directory");
+
+        RemoteIterator<LocatedFileStatus> fileStatusListIterator = fs.listFiles(new Path(inPathName), true);
+
+        while (fileStatusListIterator.hasNext()) {
+            LocatedFileStatus fileStatus = fileStatusListIterator.next();
+
+            String inPath = fileStatus.getPath().toUri().getPath();
+            String outPath = inPath.replace(inPathName, outPathName);
+
+            logger.debug("--> " + inPath);
 
             long start = System.currentTimeMillis();
+            System.out.println(inPath);
+            System.out.println(outPath);
 
-            Compressor compressor = new SnappyCompressor();
+            Compressor compressor = new SnappyCompressor(conf);
             compressor.init();
-            int len = compressor.compress(input, input.length, compressOutput);
-            compressor.exit();
+            compressor.compress(inPath, outPath);
 
             long end = System.currentTimeMillis();
 
-            String path = file.getAbsolutePath().replace(inPathName.getAbsolutePath(), outPathName.getAbsolutePath());
-            File tmp = new File(path);
-
-            FileUtils.writeByteArrayToFile(tmp, Arrays.copyOf(compressOutput, len));
-            long before = FileUtils.sizeOf(file);
-            long after = FileUtils.sizeOf(tmp);
+            long before = fs.getFileStatus(new Path(inPath)).getLen();
+            long after = fs.getFileStatus(new Path(outPath)).getLen();
 
             double compressionRatio = 0.0;
             if (before == 0) {
@@ -69,7 +73,7 @@ public class CompressionFiles {
             String sql = String.format("INSERT INTO compress_test (compress_type, file_name, file_size_before, file_size_after, "
                             + "compression_ratio, compression_speed, start_time, duration) VALUES ("
                             + "'HARDWARECOMPRESS', '%s', %d, %d, %.4f, %.4f,'%s', %d);"
-                    , file.getAbsolutePath(), before, after, compressionRatio, compressionSpeed, startTimestamp, end - start);
+                    , inPath, before, after, compressionRatio, compressionSpeed, startTimestamp, end - start);
 
             logger.info(sql);
         }

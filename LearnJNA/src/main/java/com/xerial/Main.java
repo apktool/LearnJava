@@ -1,4 +1,4 @@
-package com.compress;
+package com.xerial;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -15,36 +15,28 @@ import java.util.ResourceBundle;
  * @author li.wengang
  * @date 2018-12-17 13:54
  */
-@CommandLine.Command(version = {"Compression/Decompressio 2.0", "Build li.wengang", "(c) 2018"})
-public class SnappyMain {
-    private static final Logger logger = LoggerFactory.getLogger(SnappyMain.class);
+@CommandLine.Command(version = {"Xerial Compression/Decompressio 2.0", "Build li.wengang", "(c) 2018"})
+public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("local");
-
+    private static final String errMessage = "The Command is error, Please input again!";
     @CommandLine.Option(names = {"-h", "--help"}, description = "help")
     private boolean help = false;
-
     @CommandLine.Option(names = {"-v", "--version"}, description = "version")
     private boolean version = false;
-
-    @CommandLine.Option(names = {"-c", "--compress"}, description = "Compress File")
+    @CommandLine.Option(names = {"-c", "--jna"}, description = "Compress File")
     private boolean compress = false;
-
     @CommandLine.Option(names = {"-d", "--decompress"}, description = "Decompress File")
     private boolean decompress = false;
-
     @CommandLine.Option(names = {"-s", "--checksum"}, description = "Checksum File")
     private boolean checksum = false;
-
     @CommandLine.Option(names = {"-a", "--all"}, description = "Compress Files, Decompress Files and Checksum Files")
     private boolean all = false;
-
     @CommandLine.Parameters(paramLabel = "String", description = "One or more files to archive")
     private String[] fileList = new String[0];
 
-    private static final String errMessage = "The Command is error, Please input again!";
-
     public static void main(String[] args) {
-        SnappyMain app = new SnappyMain();
+        Main app = new Main();
         CommandLine commandLine = new CommandLine(app);
 
         try {
@@ -61,7 +53,7 @@ public class SnappyMain {
         } else if (app.compress) {
             if (app.fileList.length == 0) {
                 logger.info("Compress directory ...");
-                operatDirectory("compress");
+                operatDirectory("jna");
             } else if (app.fileList.length == 2) {
                 logger.info("Compress file...");
                 compress(app.fileList);
@@ -139,7 +131,7 @@ public class SnappyMain {
     }
 
     private static void operatDirectory(String cmd) {
-        if (cmd.equals("compress")) {
+        if (cmd.equals("jna")) {
             File inPathName = new File(resourceBundle.getString("original.directory"));
             File outPathName = new File(resourceBundle.getString("compress.directory"));
 

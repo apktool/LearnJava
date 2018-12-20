@@ -1,4 +1,4 @@
-package com.compress.snappy;
+package com.jna.snappy;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;

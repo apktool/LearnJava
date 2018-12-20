@@ -1,4 +1,4 @@
-package com.compress.snappy;
+package com.jna.snappy;
 
 /**
  * @author li.wengang

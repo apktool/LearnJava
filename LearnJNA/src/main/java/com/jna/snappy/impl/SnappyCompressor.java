@@ -1,7 +1,7 @@
-package com.compress.snappy.impl;
+package com.jna.snappy.impl;
 
-import com.compress.snappy.Compressor;
-import com.compress.snappy.SnappyLibrary;
+import com.jna.snappy.Compressor;
+import com.jna.snappy.SnappyLibrary;
 import com.sun.jna.ptr.IntByReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

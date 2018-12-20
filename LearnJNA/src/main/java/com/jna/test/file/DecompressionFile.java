@@ -1,7 +1,7 @@
-package com.compress.test.file;
+package com.jna.test.file;
 
-import com.compress.snappy.Decompressor;
-import com.compress.snappy.impl.SnappyDecompressor;
+import com.jna.snappy.Decompressor;
+import com.jna.snappy.impl.SnappyDecompressor;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
