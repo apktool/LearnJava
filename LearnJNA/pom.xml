@@ -97,7 +97,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.xerial.Main</mainClass>
+                            <mainClass>com.xerial.CryptoOutputStream</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -128,7 +128,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.hadoop.Main</mainClass>
+                            <mainClass>com.hadoop.Main1</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
