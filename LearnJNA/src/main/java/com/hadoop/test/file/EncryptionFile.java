@@ -1,7 +1,7 @@
 package com.hadoop.test.file;
 
 import com.hadoop.crypto.Encryption;
-import com.hadoop.crypto.impl.OpenSSLEncryption;
+import com.hadoop.crypto.impl.CCEncryption;
 import org.apache.hadoop.conf.Configuration;
 
 /**
@@ -13,7 +13,7 @@ public class EncryptionFile {
         Configuration conf = new Configuration();
         conf.set("hadoop.security.crypto.codec.classes.aes.ctr.nopadding", org.apache.hadoop.crypto.CCAesCtrCryptoCodec.class.getName());
 
-        Encryption encryption = new OpenSSLEncryption(conf);
+        Encryption encryption = new CCEncryption(conf);
 
         encryption.init();
         int len = encryption.encrypt(args[0], args[1]);
