@@ -3,10 +3,7 @@ package com.hadoop.test.directory;
 import com.hadoop.snappy.Decompressor;
 import com.hadoop.snappy.impl.SnappyDecompressor;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.LocatedFileStatus;
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.fs.RemoteIterator;
+import org.apache.hadoop.fs.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +28,9 @@ public class DecompressionFiles {
         final String outPathName = resourceBundle.getString("decompress.directory");
 
         RemoteIterator<LocatedFileStatus> fileStatusListIterator = fs.listFiles(new Path(inPathName), true);
+
+        Path hdfswritepath = new Path("/tmp/jna-decompression.log");
+        FSDataOutputStream outputStream=fs.create(hdfswritepath);
 
         while (fileStatusListIterator.hasNext()) {
             LocatedFileStatus fileStatus = fileStatusListIterator.next();
@@ -70,11 +70,14 @@ public class DecompressionFiles {
 
             String sql = String.format("INSERT INTO decompress_test (decompress_type, file_name, file_size_before, file_size_after, "
                             + "decompression_ratio, decompression_speed, start_time, duration) VALUES ("
-                            + "'HARDWAREDECOMPRESS', '%s', %d, %d, %.4f, %.4f,'%s', %d);"
+                            + "'HARDWAREDECOMPRESS', '%s', %d, %d, %.4f, %.4f,'%s', %d);\n"
                     , inPath, before, after, decompressionRatio, decompressionSpeed, startTimestamp, end - start);
 
 
+            outputStream.writeBytes(sql);
             logger.info(sql);
         }
+
+        outputStream.close();
     }
 }

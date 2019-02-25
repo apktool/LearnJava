@@ -2,6 +2,8 @@ package com.hadoop;
 
 
 import com.hadoop.test.directory.ChecksumFiles;
+import com.hadoop.test.directory.DecryptionFiles;
+import com.hadoop.test.directory.EncryptionFiles;
 import com.hadoop.test.file.ChecksumFile;
 import com.hadoop.test.file.DecryptionFile;
 import com.hadoop.test.file.EncryptionFile;
@@ -52,7 +54,7 @@ public class Main1 {
         } else if (app.encryption) {
             if (app.fileList.length == 0) {
                 logger.info("Encrypt HDFS directory ...");
-//                EncryptionFiles.main(app.fileList);
+                EncryptionFiles.main(app.fileList);
             } else if (app.fileList.length == 2) {
                 logger.info("Encrypt HDFS file...");
                 EncryptionFile.main(app.fileList);
@@ -62,7 +64,7 @@ public class Main1 {
         } else if (app.decryption) {
             if (app.fileList.length == 0) {
                 logger.info("Decrypt HDFS directory ...");
-//                DecryptionFiles.main(app.fileList);
+                DecryptionFiles.main(app.fileList);
             } else if (app.fileList.length == 2) {
                 logger.info("Decrypt HDFS file...");
                 DecryptionFile.main(app.fileList);
@@ -80,9 +82,9 @@ public class Main1 {
                 System.out.println(errMessage);
             }
         } else if (app.all) {
-//            EncryptionFiles.main(args);
-//            DecryptionFiles.main(args);
-//            ChecksumFiles.main(args);
+            EncryptionFiles.main(args);
+            DecryptionFiles.main(args);
+            ChecksumFiles.main(args);
         } else {
             System.out.println(errMessage);
             commandLine.usage(System.out);

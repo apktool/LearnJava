@@ -97,7 +97,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.xerial.CryptoOutputStream</mainClass>
+                            <mainClass>com.xerial.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,14 +1,15 @@
 package com.xerial;
 
-import org.apache.commons.io.FileUtils;
+import com.xerial.test.directory.ChecksumFiles;
+import com.xerial.test.directory.CompressionFiles;
+import com.xerial.test.directory.DecompressionFiles;
+import com.xerial.test.file.ChecksumFile;
+import com.xerial.test.file.CompressionFile;
+import com.xerial.test.file.DecompressionFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xerial.snappy.Snappy;
 import picocli.CommandLine;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
 /**
@@ -53,126 +54,32 @@ public class Main {
         } else if (app.compress) {
             if (app.fileList.length == 0) {
                 logger.info("Compress directory ...");
-                operatDirectory("jna");
+                CompressionFiles.main(app.fileList);
             } else if (app.fileList.length == 2) {
                 logger.info("Compress file...");
-                compress(app.fileList);
+                CompressionFile.main(app.fileList);
             } else {
                 System.err.println(errMessage);
             }
         } else if (app.decompress) {
             if (app.fileList.length == 0) {
                 logger.info("Decompress directory ...");
-                operatDirectory("decompress");
+                DecompressionFiles.main(app.fileList);
             } else if (app.fileList.length == 2) {
                 logger.info("Decompress file...");
-                decompress(app.fileList);
+                DecompressionFile.main(app.fileList);
             } else {
                 System.err.println(errMessage);
             }
         } else if (app.checksum) {
             if (app.fileList.length == 0) {
                 logger.info("Checksum directory ...");
-                operatDirectory("checksum");
+                ChecksumFiles.main(app.fileList);
             } else if (app.fileList.length == 2) {
                 logger.info("Checksum file...");
-                checksum(app.fileList);
+                ChecksumFile.main(app.fileList);
             } else {
                 System.err.println(errMessage);
-            }
-        }
-    }
-
-    private static void compress(String[] args) {
-        final File inPathName = new File(args[0]);
-        final File outPathName = new File(args[1]);
-        try {
-
-            byte[] input = FileUtils.readFileToByteArray(inPathName);
-            byte[] compressed = Snappy.compress(input);
-
-            FileUtils.writeByteArrayToFile(outPathName, compressed);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void decompress(String[] args) {
-        final File inPathName = new File(args[0]);
-        final File outPathName = new File(args[1]);
-        try {
-
-            byte[] input = FileUtils.readFileToByteArray(inPathName);
-            byte[] uncompressed = Snappy.uncompress(input);
-
-            FileUtils.writeByteArrayToFile(outPathName, uncompressed);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void checksum(String[] args) {
-        final File inPathName = new File(args[0]);
-        final File outPathName = new File(args[1]);
-
-        boolean isSame = false;
-
-        try {
-            isSame = FileUtils.checksumCRC32(inPathName) == FileUtils.checksumCRC32(outPathName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (isSame) {
-            logger.info("SAME CONTENTS");
-        } else {
-            logger.info("DIFFERENT CONTENTS");
-        }
-    }
-
-    private static void operatDirectory(String cmd) {
-        if (cmd.equals("jna")) {
-            File inPathName = new File(resourceBundle.getString("original.directory"));
-            File outPathName = new File(resourceBundle.getString("compress.directory"));
-
-            Iterator<File> fileIterator = FileUtils.iterateFiles(inPathName, null, true);
-            while (fileIterator.hasNext()) {
-                File file = fileIterator.next();
-
-                String[] tmp = new String[2];
-                tmp[0] = file.getAbsolutePath();
-                tmp[1] = file.getAbsolutePath().replace(inPathName.getAbsolutePath(), outPathName.getAbsolutePath());
-
-                compress(tmp);
-            }
-        } else if (cmd.equals("decompress")) {
-            File inPathName = new File(resourceBundle.getString("compress.directory"));
-            File outPathName = new File(resourceBundle.getString("decompress.directory"));
-
-            Iterator<File> fileIterator = FileUtils.iterateFiles(inPathName, null, true);
-            while (fileIterator.hasNext()) {
-                File file = fileIterator.next();
-
-                String[] tmp = new String[2];
-                tmp[0] = file.getAbsolutePath();
-                tmp[1] = file.getAbsolutePath().replace(inPathName.getAbsolutePath(), outPathName.getAbsolutePath());
-
-                decompress(tmp);
-            }
-        } else if (cmd.equals("checksum")) {
-
-            File inPathName = new File(resourceBundle.getString("original.directory"));
-            File outPathName = new File(resourceBundle.getString("decompress.directory"));
-
-            Iterator<File> fileIterator = FileUtils.iterateFiles(inPathName, null, true);
-            while (fileIterator.hasNext()) {
-                File file = fileIterator.next();
-
-                String[] tmp = new String[2];
-                tmp[0] = file.getAbsolutePath();
-                tmp[1] = file.getAbsolutePath().replace(inPathName.getAbsolutePath(), outPathName.getAbsolutePath());
-
-                checksum(tmp);
             }
         }
     }

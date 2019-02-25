@@ -27,6 +27,9 @@ public class ChecksumFiles {
 
         RemoteIterator<LocatedFileStatus> fileStatusListIterator = fs.listFiles(new Path(inPathName), true);
 
+        Path hdfswritepath = new Path("/tmp/jna-checksum-encryption.log");
+        FSDataOutputStream outputStream=fs.create(hdfswritepath);
+
         while (fileStatusListIterator.hasNext()) {
             LocatedFileStatus fileStatus = fileStatusListIterator.next();
 
@@ -50,16 +53,21 @@ public class ChecksumFiles {
             String startTimestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(start);
 
             if (inputCheckSum1.equals(inputCheckSum2)) {
-                String sql = String.format("INSERT INTO checksum_test(original_file_name, decompress_file_name, is_same," +
-                                " start_time, duration) VALUES ('%s', '%s', %b, '%s', %d);"
+                String sql = String.format("INSERT INTO checksum_test_encrption(original_file_name, decryption_file_name, is_same," +
+                                " start_time, duration) VALUES ('%s', '%s', %b, '%s', %d);\n"
                         , inPath, outPath, true, startTimestamp, end - start);
+                outputStream.writeBytes(sql);
                 logger.info(sql);
             } else {
-                String sql = String.format("INSERT INTO checksum_test(original_file_name, decompress_file_name, is_same," +
-                                " start_time, duration) VALUES ('%s', '%s', %b, '%s', %d);"
+                String sql = String.format("INSERT INTO checksum_test_encrption(original_file_name, decryption_file_name, is_same," +
+                                " start_time, duration) VALUES ('%s', '%s', %b, '%s', %d);\n"
                         , inPath, outPath, false, startTimestamp, end - start);
+                outputStream.writeBytes(sql);
                 logger.info(sql);
             }
+
         }
+        outputStream.close();
+
     }
 }
