@@ -20,7 +20,7 @@ public class App {
         Statement statement = null;
         try {
             Properties info = new Properties();
-            info.put(model.split("\\.")[0], jsonPath(model));
+            info.put("model", jsonPath(model));
 
             connection = DriverManager.getConnection("jdbc:calcite:", info);
             statement = connection.createStatement();
