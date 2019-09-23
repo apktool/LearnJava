@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "defaultSchema": "bookshop",
+  "schemas": [
+    {
+      "type": "custom",
+      "name": "bookshop",
+      "factory": "com.calcite.adapter.chapter2.BookShopSchemaFactory",
+      "operand": {
+        "p1": "hello",
+        "p2": "world"
+      }
+    }
+  ]
+}
+
