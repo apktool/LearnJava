@@ -4,6 +4,8 @@ import com.tmp.App;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
@@ -16,10 +18,13 @@ public class PropertyUtil {
 
     synchronized static private void loadProps(String fileName) {
         props = new Properties();
+        String absolutePath = new File("").getAbsolutePath();
 
         ClassLoader loader = App.class.getClassLoader();
 
-        try (InputStream in1 = loader.getResourceAsStream(prefix + "/" + fileName)) {
+        try (InputStream in1 = new FileInputStream(
+                new File(absolutePath + File.separator + prefix + File.separator + fileName)
+        )) {
             props.load(in1);
         } catch (IOException | NullPointerException ec) {
             try (InputStream in2 = loader.getResourceAsStream(fileName)) {

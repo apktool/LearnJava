@@ -28,3 +28,8 @@ hs_err_pid*
 out
 target/
 logs
+
+.factorypath
+.project
+.classpath
+.settings
