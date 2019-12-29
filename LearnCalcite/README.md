@@ -5,7 +5,7 @@
 # Usage
 
 ```bash
-java -cp .:LearnCalcite-1.0-SNAPSHOT.jar com.calcite.adapter.App
+java -cp .:LearnCalcite-1.0-SNAPSHOT.jar com.calcite.adapter.csv.App
 ```
 
 ```bash

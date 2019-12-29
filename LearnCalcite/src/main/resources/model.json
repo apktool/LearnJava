@@ -7,7 +7,7 @@
       "type": "custom",
       "factory": "com.calcite.adapter.csv.CsvSchemaFactory",
       "operand": {
-        "file": "conf/sales/DEPTS.csv"
+        "file": "/home/li/WorkSpace/LearnJava/LearnCalcite/src/main/resources/sales/DEPTS.csv"
       }
     }
   ]

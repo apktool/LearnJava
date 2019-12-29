@@ -1,4 +1,4 @@
-package com.calcite.adapter;
+package com.calcite.adapter.csv;
 
 
 import org.apache.logging.log4j.LogManager;
