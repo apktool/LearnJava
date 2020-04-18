@@ -15,6 +15,7 @@ import java.lang.management.OperatingSystemMXBean;
 public class OsInfoDemo {
     public static void main(String[] args) {
         OperatingSystemMXBean os = ManagementFactory.getOperatingSystemMXBean();
+
         if (os instanceof UnixOperatingSystemMXBean) {
             UnixOperatingSystemMXBean unixOs = (UnixOperatingSystemMXBean) os; //10240
             System.out.println(unixOs.getMaxFileDescriptorCount()); //37
@@ -30,6 +31,15 @@ public class OsInfoDemo {
             System.out.println(unixOs.getTotalSwapSpaceSize()); //8589934592
             System.out.println(unixOs.getTotalPhysicalMemorySize()); //17179869184
             System.out.println(unixOs.getSystemCpuLoad()); //0.0
+        }
+
+        System.out.println("--------------------------------------------");
+
+        if (os instanceof OperatingSystemMXBean) {
+            System.out.println(os.getArch());
+            System.out.println(os.getAvailableProcessors());
+            System.out.println(os.getName());
+            System.out.println(os.getVersion());
         }
     }
 }
