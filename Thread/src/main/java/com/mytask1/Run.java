@@ -1,8 +1,4 @@
-package com.mytask1.Main;
-
-import com.mytask1.Task;
-import com.mytask1.MyThread1;
-import com.mytask1.MyThread2;
+package com.mytask1;
 
 public class Run {
     public static void main(String[] args) throws InterruptedException {

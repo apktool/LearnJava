@@ -1,7 +1,5 @@
 package com.mytask3;
 
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-
 public class Service {
     public static void printA() throws InterruptedException {
         System.out.println("Thread-Name: start->| " + System.currentTimeMillis() + " >|< " + Thread.currentThread().getName());

@@ -1,7 +1,5 @@
 package com.mytask1;
 
-import com.mytask1.Task;
-
 public class MyThread1 extends Thread{
     private Task task;
 
