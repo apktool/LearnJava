@@ -2,6 +2,7 @@ package com.csv.demo;
 
 import lombok.NoArgsConstructor;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -16,20 +17,20 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class FileCreatorThread extends Thread {
     private AtomicInteger startNo;
 
-    private String folderPrefix;
+    private File folderPrefix;
 
     private Integer rowNum;
 
-    public FileCreatorThread(Runnable target, String folderPrefix, Integer startNo, Integer rowNum) {
+    public FileCreatorThread(Runnable target, File folder, Integer startNo, Integer rowNum) {
         super(target);
-        this.folderPrefix = folderPrefix;
+        this.folderPrefix = folder;
         this.startNo = new AtomicInteger(startNo);
         this.rowNum = rowNum;
     }
 
     @Override
     public void run() {
-        AppRunner runner = new AppRunner(folderPrefix + Thread.currentThread().getName(), startNo.get());
+        AppRunner runner = new AppRunner(new File(folderPrefix + File.separator + Thread.currentThread().getName()), startNo.get());
 
         for (int i = startNo.get(); i < startNo.get() + rowNum; i++) {
             try {

@@ -8,10 +8,10 @@ import com.csv.iterator.RandomByteIterator;
 import com.csv.iterator.StringByteIterator;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.Writer;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,49 +23,22 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class AppRunner {
-    private OutputStream outputStream;
+    private Writer outputStream;
     private Generator keySequence;
 
-    public AppRunner(String fileName, int start) {
+    public AppRunner(File file, int start) {
         keySequence = new CounterGenerator(start);
         try {
-            outputStream = new FileOutputStream(fileName);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e.getMessage());
+            outputStream = new FileWriter(file);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-    }
-
-    public static void main(String[] args) throws IOException {
-        AppRunner runner = new AppRunner("/tmp/abc/" + Thread.currentThread().getName(), 0);
-
-        for (int i = 0; i < 10; i++) {
-            try {
-                runner
-                        .appendKeyToStream()
-                        .appendDelimiterToStream(",")
-                        .appendTimestampToStream()
-                        .appendDelimiterToStream(",")
-                        .appendLipsumToStream(10)
-                        .appendDelimiterToStream("\n");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        runner.build();
-
     }
 
     public AppRunner appendKeyToStream() throws IOException {
         StringGenerator generator = new StringGenerator(Long.parseLong(keySequence.nextString()));
-        StringByteIterator iterator = new StringByteIterator(generator.nextString());
 
-        outputStream.write("user".getBytes());
-
-        while (iterator.hasNext()) {
-            outputStream.write(iterator.nextByte());
-        }
+        outputStream.write("user" + generator.nextValue());
 
         return this;
     }
@@ -97,7 +70,7 @@ public class AppRunner {
     }
 
     public AppRunner appendDelimiterToStream(String delimiter) throws IOException {
-        outputStream.write(delimiter.getBytes());
+        outputStream.write(delimiter);
         return this;
     }
 
@@ -107,5 +80,25 @@ public class AppRunner {
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    public static void main(String[] args) {
+        AppRunner runner = new AppRunner(new File("/tmp/abc/" + Thread.currentThread().getName()), 0);
+
+        for (int i = 0; i < 10; i++) {
+            try {
+                runner
+                        .appendKeyToStream()
+                        .appendDelimiterToStream(",")
+                        .appendTimestampToStream()
+                        .appendDelimiterToStream(",")
+                        .appendLipsumToStream(10)
+                        .appendDelimiterToStream("\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        runner.build();
     }
 }

@@ -1,5 +1,6 @@
 package com.csv.demo;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -23,7 +24,7 @@ public class App {
 
             @Override
             public Thread newThread(Runnable r) {
-                Thread thread = new FileCreatorThread(r, "/tmp/abc/", fileCounter.get() * rowNum, rowNum);
+                Thread thread = new FileCreatorThread(r, new File("/tmp/abc"), fileCounter.get() * rowNum, rowNum);
                 thread.setName("csv-generator-thread-" + fileCounter.incrementAndGet());
                 return thread;
             }
