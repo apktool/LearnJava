@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_package = "com.apktool.protobuf.rpc";
+option java_outer_classname = "Message";
+option java_generic_services = true;
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+
+message Request {
+    // RPC service name
+    string serviceName = 1;
+    // RPC method name  default execute
+    string methodName = 2;
+    // RPC params
+    Params params = 3;
+}
+
+message Params {
+    string key = 1;
+    string value = 2;
+}
+
+message Msg {
+    string content = 1;
+}
+
+message Response {
+    // RPC response code
+    int32 code = 1;
+    // RPC response code msg
+    string msg = 2;
+    string data = 3;
+}
+
+//interface
+service RpcService {
+    rpc call (Request) returns (Response);
+}
+
+service ReplyService {
+    rpc call (Msg) returns (Msg);
+}
