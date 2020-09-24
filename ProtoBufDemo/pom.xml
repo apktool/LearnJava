@@ -22,6 +22,7 @@
         <lombok.version>1.18.12</lombok.version>
         <protobuf.version>3.13.0</protobuf.version>
         <grpc.version>1.32.1</grpc.version>
+        <netty.version>4.1.52.Final</netty.version>
     </properties>
 
     <dependencies>
@@ -73,6 +74,21 @@
             <version>6.0.53</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.googlecode.protobuf-rpc-pro/protobuf-rpc-pro-duplex -->
+        <dependency>
+            <groupId>com.googlecode.protobuf-rpc-pro</groupId>
+            <artifactId>protobuf-rpc-pro-duplex</artifactId>
+            <version>3.3.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
