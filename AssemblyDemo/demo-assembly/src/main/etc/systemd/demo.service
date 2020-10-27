@@ -1,0 +1,15 @@
+[Unit]
+Description={{app_name_version}}
+After=network.service sshd.service
+
+[Service]
+Type=simple
+PIDFile={{app_pid_file}}
+ExecStart=/usr/bin/bash {{app_bin_path}}/shell.sh
+ExecReload=/bin/kill -SIGTERM
+KillMode=process
+Restart=always
+RestartSec=30s
+
+[Install]
+WantedBy=multi-user.target

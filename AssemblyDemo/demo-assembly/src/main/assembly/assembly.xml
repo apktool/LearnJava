@@ -1,0 +1,84 @@
+<assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+    <id>assembly-demo</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <fileSets>
+        <fileSet>
+            <directory>${project.parent.basedir}</directory>
+            <outputDirectory>${project.parent.name}-${project.version}/docs</outputDirectory>
+            <includes>
+                <include>README.md</include>
+            </includes>
+            <fileMode>0644</fileMode>
+        </fileSet>
+
+        <fileSet>
+            <directory>src/main/bin</directory>
+            <outputDirectory>${project.parent.name}-${project.version}/bin</outputDirectory>
+            <fileMode>0755</fileMode>
+            <lineEnding>unix</lineEnding>
+        </fileSet>
+    </fileSets>
+
+    <moduleSets>
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includeSubModules>true</includeSubModules>
+            <includes>
+                <include>com.assembly.demo:*</include>
+            </includes>
+            <excludes>
+                <exclude>org*:*</exclude>
+            </excludes>
+            <binaries>
+                <outputDirectory>${project.parent.name}-${project.version}/jars</outputDirectory>
+                <unpack>false</unpack>
+                <dependencySets>
+                    <dependencySet>
+                        <excludes>
+                            <exclude>org.*:*</exclude>
+                        </excludes>
+                        <unpack>false</unpack>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <useTransitiveDependencies>false</useTransitiveDependencies>
+                    </dependencySet>
+                </dependencySets>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includeSubModules>true</includeSubModules>
+            <includes>
+                <include>com.assembly.demo:demo-main</include>
+            </includes>
+            <sources>
+                <fileSets>
+                    <fileSet>
+                        <directory>target/config</directory>
+                        <outputDirectory>${project.parent.name}-${project.version}/config</outputDirectory>
+                        <fileMode>0644</fileMode>
+                        <lineEnding>unix</lineEnding>
+                    </fileSet>
+                </fileSets>
+                <outputDirectoryMapping/>
+            </sources>
+        </moduleSet>
+    </moduleSets>
+
+    <dependencySets>
+        <dependencySet>
+            <excludes>
+                <exclude>com.assembly.demo:*</exclude>
+            </excludes>
+            <unpack>false</unpack>
+            <useProjectArtifact>true</useProjectArtifact>
+            <outputDirectory>${project.parent.name}-${project.version}/lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>

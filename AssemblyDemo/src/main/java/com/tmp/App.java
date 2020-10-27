@@ -9,7 +9,6 @@ import java.util.Properties;
 public class App {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
 
-
     public static void main(String[] args) {
         String[] files = new String[]{
                 "application.properties",
