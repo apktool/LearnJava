@@ -1,0 +1,16 @@
+
+syntax = "proto3";
+
+package apktool.pb;
+
+option java_package = "com.apktool.protobuf";
+option java_outer_classname = "AddressBookProtos";
+option java_generic_services = false;
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+
+import "Person.proto";
+
+message AddressBook {
+   repeated Person people = 1;
+}
