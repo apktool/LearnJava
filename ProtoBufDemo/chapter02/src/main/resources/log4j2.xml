@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" strict="true" name="my-app">
+    <Properties>
+        <Property name="logPattern" value="%d{ISO8601} %-5p [%t] %c{2}[%L]: %.1000m%n"/>
+        <Property name="logDirectory" value="log"/>
+        <Property name="appName" value="demo"/>
+    </Properties>
+    <Appenders>
+        <Appender name="Stdout" type="Console">
+            <Layout type="PatternLayout" pattern="${logPattern}"/>
+            <Filters>
+                <Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>
+            </Filters>
+        </Appender>
+        <Appender name="File" type="File" fileName="${logDirectory}/apache.log">
+            <Layout type="PatternLayout" pattern="${logPattern}"/>
+        </Appender>
+        <Appender name="RollingFile" type="RollingFile" fileName="${logDirectory}/${appName}.log"
+                  filePattern="${logDirectory}/${appName}-%d{yyyy-dd-MM}-%i.log.gz">
+            <BurstFilter level="INFO" rate="16" maxBurst="100"/>
+            <Layout type="PatternLayout" pattern="${logPattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="7" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20">
+                <Delete basePath="${logDirectory}" maxDepth="2">
+                    <IfFileName glob="${appName}-*.log.gz">
+                        <IfLastModified age="7d">
+                            <IfAny>
+                                <IfAccumulatedFileSize exceeds="10GB"/>
+                                <IfAccumulatedFileCount exceeds="10"/>
+                            </IfAny>
+                        </IfLastModified>
+                    </IfFileName>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </Appender>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.apktool.rpc" level="DEBUG" additivity="false">
+            <AppenderRef level="INFO" ref="RollingFile"/>
+            <AppenderRef level="DEBUG" ref="Stdout"/>
+        </Logger>
+        <Logger name="io.netty.channel" level="WARN" additivity="false">
+            <AppenderRef level="WARN" ref="File"/>
+        </Logger>
+        <Root level="DEBUG">
+            <AppenderRef ref="Stdout"/>
+        </Root>
+    </Loggers>
+</Configuration>
