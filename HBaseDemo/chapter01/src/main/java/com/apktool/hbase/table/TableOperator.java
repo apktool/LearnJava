@@ -8,6 +8,10 @@ import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.client.ResultScanner;
+import org.apache.hadoop.hbase.client.Scan;
+import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.client.TableDescriptor;
 
 import com.apktool.hbase.exception.ApktoolIoException;
@@ -67,6 +71,24 @@ public class TableOperator implements Closeable {
         } catch (IOException e) {
             throw new ApktoolIoException(e.getMessage());
         }
+    }
+
+    public ResultScanner scan(TableName tableName, Scan scan) throws ApktoolIoException {
+        try (Table table = connection.getTable(tableName)) {
+            return table.getScanner(scan);
+        } catch (IOException e) {
+            throw new ApktoolIoException(e.getMessage());
+        }
+    }
+
+    public boolean put(TableName tableName, Put put) throws ApktoolIoException {
+        try (Table table = connection.getTable(tableName)) {
+            table.put(put);
+        } catch (IOException e) {
+            throw new ApktoolIoException(e.getMessage());
+        }
+
+        return true;
     }
 
     @Override
